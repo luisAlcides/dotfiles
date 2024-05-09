@@ -23,6 +23,7 @@ $python\
 $docker_context\
 [](fg:blue bg:purple)\
 $time\
+$python_venv\
 [ ](fg:purple)\
 $line_break$character"""
 
@@ -164,7 +165,10 @@ format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 [python]
 symbol = ""
 style = "bg:teal"
-format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+format = '[[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )](fg:base bg:teal)]($style)'
+
+
+
 
 [docker_context]
 symbol = ""

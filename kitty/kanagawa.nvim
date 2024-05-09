@@ -2,7 +2,7 @@
 
 #: Fonts {{{
 
-font_family      IosevkaTerm Nerd Font
+font_family      Hack Nerd Font
 font_size 14.0
 
 #: Foreground and background colors.
