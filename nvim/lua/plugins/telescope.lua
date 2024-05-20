@@ -1,20 +1,25 @@
 return {
-  "nvim-telescope/telescope.nvim",
-  opts = {
-    defaults = {
-      layout_strategy = "vertical",
-      layout_config = { preview_cutoff = 6 },
-    },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
   },
-  dependencies = {
-    {
-      "nvim-telescope/telescope-live-grep-args.nvim",
-      -- This will not install any breaking changes.
-      -- For major updates, this must be adjusted manually.
-      version = "^1.0.0",
-    },
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.5",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown({}),
+          },
+        },
+      })
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<C-p>", builtin.find_files, {})
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+      vim.keymap.set("n", "<leader><leader>", builtin.oldfiles, {})
+
+      require("telescope").load_extension("ui-select")
+    end,
   },
-  config = function()
-    require("telescope").load_extension("live_grep_args")
-  end,
 }

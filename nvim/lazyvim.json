@@ -1,6 +1,9 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.copilot"
+    "lazyvim.plugins.extras.coding.copilot",
+    "lazyvim.plugins.extras.editor.harpoon2",
+    "lazyvim.plugins.extras.lang.python",
+    "lazyvim.plugins.extras.util.gitui"
   ],
   "news": {
     "NEWS.md": "3314"
