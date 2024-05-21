@@ -60,3 +60,11 @@ vim.api.nvim_set_keymap("x", "<A-j>", "<Nop>", { noremap = true, silent = true }
 vim.api.nvim_set_keymap("x", "<A-k>", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("x", "J", "<Nop>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("x", "K", "<Nop>", { noremap = true, silent = true })
+
+vim.keymap.set("i", "<C-L>", "<Plug>(copilot-accept-word)")
+
+vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
