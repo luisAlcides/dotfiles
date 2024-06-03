@@ -99,4 +99,4 @@ source /usr/share/sudo-plugin/sudo.plugin.zsh
 #conda deactivate
 
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
