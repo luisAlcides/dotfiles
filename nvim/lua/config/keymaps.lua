@@ -1,70 +1,50 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+local keymap = vim.keymap
+local opts = { noremap = true, silent = true }
 
--- REQUIRED
-local harpoon = require("harpoon")
+keymap.set("n", "x", '"_x')
+
+-- Increment/decrement
+keymap.set("n", "+", "<C-a>")
+keymap.set("n", "-", "<C-x>")
+
+-- Select all
+keymap.set("n", "<C-a>", "gg<S-v>G")
+
+-- Save file and quit
+keymap.set("n", "<Leader>w", ":update<Return>", opts)
+keymap.set("n", "<Leader>q", ":quit<Return>", opts)
+keymap.set("n", "<Leader>Q", ":qa<Return>", opts)
+
+-- File explorer with NvimTree
+keymap.set("n", "<Leader>f", ":NvimTreeFindFile<Return>", opts)
+keymap.set("n", "<Leader>t", ":NvimTreeToggle<Return>", opts)
+
+-- Tabs
+keymap.set("n", "te", ":tabedit")
+keymap.set("n", "<tab>", ":tabnext<Return>", opts)
+keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
+keymap.set("n", "tw", ":tabclose<Return>", opts)
+
+-- Split window
+keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "sv", ":vsplit<Return>", opts)
+
+-- Move window
+keymap.set("n", "sh", "<C-w>h")
+keymap.set("n", "sk", "<C-w>k")
+keymap.set("n", "sj", "<C-w>j")
+keymap.set("n", "sl", "<C-w>l")
+
+-- Resize window
+keymap.set("n", "<C-S-h>", "<C-w><")
+keymap.set("n", "<C-S-l>", "<C-w>>")
+keymap.set("n", "<C-S-k>", "<C-w>+")
+keymap.set("n", "<C-S-j>", "<C-w>-")
+
+-- Diagnostics
+keymap.set("n", "<C-j>", function()
+  vim.diagnostic.goto_next()
+end, opts)
+
 local oil = require("oil")
-harpoon:setup()
-oil.setup()
--- REQUIRED
-
------  OIL -----
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
--- Delete all buffers but the current one --
-vim.keymap.set(
-  "n",
-  "<leader>bq",
-  '<Esc>:%bdelete|edit #|normal`"<Return>',
-  { desc = "Delete other buffers but the current one" }
-)
-
------ HARPOON 2 -----
-vim.keymap.set("n", "<leader>a", function()
-  harpoon:list():append()
-end, { desc = "Add harpoon mark" })
-
-vim.keymap.set("n", "<C-e>", function()
-  harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-
-vim.keymap.set("n", "<C-M-h>", function()
-  harpoon:list():select(1)
-end)
-
-vim.keymap.set("n", "<C-M-j>", function()
-  harpoon:list():select(2)
-end)
-
-vim.keymap.set("n", "<C-M-k>", function()
-  harpoon:list():select(3)
-end)
-
-vim.keymap.set("n", "<C-M-l>", function()
-  harpoon:list():select(4)
-end)
-
--- Disable key mappings in insert mode
-vim.api.nvim_set_keymap("i", "<A-j>", "<Nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<A-k>", "<Nop>", { noremap = true, silent = true })
-
--- Disable key mappings in normal mode
-vim.api.nvim_set_keymap("n", "<A-j>", "<Nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<A-k>", "<Nop>", { noremap = true, silent = true })
-
--- Disable key mappings in visual block mode
-vim.api.nvim_set_keymap("x", "<A-j>", "<Nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("x", "<A-k>", "<Nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("x", "J", "<Nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("x", "K", "<Nop>", { noremap = true, silent = true })
-
-vim.keymap.set("i", "<C-L>", "<Plug>(copilot-accept-word)")
-
-vim.keymap.set("i", "<C-J>", 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false,
-})
-vim.g.copilot_no_tab_map = true
+keymap.set("n", "-", oil.toggle_float, {})
