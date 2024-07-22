@@ -80,6 +80,7 @@ alias ls='lsd --group-dirs=first'
 alias env='source env/bin/activate'
 
 # manage
+alias py="python3"
 alias pyk="python3 manage.py makemigrations"
 alias pym="python3 manage.py migrate"
 alias pyr="python3 manage.py runserver"
