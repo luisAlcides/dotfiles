@@ -2,7 +2,7 @@ eval "$(starship init zsh)"
 
 
 
-PATH=/root/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
+PATH=/root/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/nvim-linux64/bin
 
 
 
@@ -54,7 +54,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # -----------------------------------------------␍
 
-# bat
+# batcat
 
 alias cat='batcat'
 
@@ -78,6 +78,13 @@ alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 
 alias env='source env/bin/activate'
+alias venv='source venv/bin/activate'
+
+alias ..='cd ..'
+alias ....='cd ../../'
+alias ......='cd ../../../'
+alias work='cd ~/work'
+alias practice='cd ~/practice'
 
 # manage
 alias py="python3"
