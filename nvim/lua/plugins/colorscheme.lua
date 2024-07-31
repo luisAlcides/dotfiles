@@ -1,4 +1,6 @@
 return {
+  -- Otros plugins existentes...
+
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -20,6 +22,22 @@ return {
       -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
   },
+
+  -- Añadir el plugin de Gruvbox Material
+  {
+    "sainnhe/gruvbox-material",
+    name = "gruvbox-material",
+    priority = 1000,
+    config = function()
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_palette = "material"
+      vim.g.gruvbox_material_enable_italic = 1
+      vim.g.gruvbox_material_transparent_background = 1
+      vim.cmd("colorscheme gruvbox-material")
+    end,
+  },
+
+  -- Otros plugins existentes...
   {
     "miikanissi/modus-themes.nvim",
     name = "modus",
@@ -58,9 +76,9 @@ return {
       end,
     },
   },
-  { "rose-pine/neovim", name = "rose-pine" },
+  { "rose-pine/neovim",                 name = "rose-pine" },
   { "nyoom-engineering/oxocarbon.nvim", name = "oxocarbon" },
-  { "rktjmp/lush.nvim", dependencies = { "mcchrish/zenbones.nvim" } },
+  { "rktjmp/lush.nvim",                 dependencies = { "mcchrish/zenbones.nvim" } },
   {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
@@ -79,7 +97,7 @@ return {
     config = function()
       require("everforest").setup({
         background = "hard",
-        italis = true,
+        italics = true,
         transparent_background_level = 1,
         diagnostic_text_highlight = true,
         diagnostic_virtual_text = "coloured",
@@ -89,7 +107,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everforest",
+      colorscheme = "gruvbox-material",
     },
   },
 }
