@@ -7,6 +7,8 @@ sudo apt install -y xclip
 sudo apt install -y gnome-tweaks
 sudo apt install -y gnome-shell-extension-manager
 sudo apt install -y python3.12-venv
+sudo apt install -y lsd bat
+sudo apt install -y libxcb-cursor-dev
 curl -sS https://starship.rs/install.sh | sh
 
 #kitty
@@ -47,3 +49,10 @@ mv ~/.cache/nvim{,.bak}
 
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 cp -r /home/heracle/dotfiles/nvim /home/heracle/.config
+
+ssh-keygen -t rsa -b 4096 -C "luisalcidesblandon@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+git config --global user.name "luisAlcides"
+git config --global user.email "luisalcidesblandon@gmail.com"
+cat ~/.ssh/id_rsa.pub
