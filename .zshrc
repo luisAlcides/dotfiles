@@ -1,8 +1,10 @@
 eval "$(starship init zsh)"
 
+export PATH=$HOME/.local/bin:$PATH
 
+export TERMINAL=kitty
 
-PATH=/root/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/nvim-linux64/bin
+PATH=/root/.local/bin:/snap/bin:/usr/sandbox/:/opt:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/opt/nvim-linux64/bin
 
 
 
@@ -134,3 +136,33 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 eval conda deactivate
+
+
+o() {
+  nvim $(find . -type f | fzf --preview='batcat --always=color {}')
+}
+
+
+own() {
+
+  local dir=$(find /home/heracle -type d | fzf --preview 'lsd --icon always --color always --tree --depth 2 {}')
+  if [ -z "$dir" ]; then
+    echo "No directory selected."
+    return 1
+  fi
+
+  # Cambia al directorio seleccionado
+  cd "$dir" || return
+
+  # Activa el entorno virtual si existe
+  if [ -f "venv/bin/activate" ]; then
+    source "venv/bin/activate"
+  elif [ -f "env/bin/activate" ]; then
+    source "env/bin/activate"
+  else
+    echo "No virtual environment found in $dir"
+  fi
+
+  # Abre Neovim en el directorio actual
+  nvim .
+}
