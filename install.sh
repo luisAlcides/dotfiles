@@ -52,14 +52,14 @@ sudo mv nvim.appimage /usr/local/bin/nvim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 cp -r /home/heracle/dotfiles/nvim /home/heracle/.config
 
+chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
+
+sudo ln -s /home/heracle/.zshrc /root/.zshrc
+
 ssh-keygen -t rsa -b 4096 -C "luisalcidesblandon@gmail.com"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_rsa
 git config --global user.name "luisAlcides"
 git config --global user.email "luisalcidesblandon@gmail.com"
 cat ~/.ssh/id_rsa.pub
-
-chsh -s $(which zsh)
-sudo chsh -s $(which zsh)
-
-sudo ln -s /home/heracle/.zshrc /root/.zshrc
