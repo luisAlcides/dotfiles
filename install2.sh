@@ -128,4 +128,26 @@ git config --global user.email "luisalcidesblandon@gmail.com"
 echo "🔑 Clave pública SSH:"
 cat ~/.ssh/id_rsa.pub
 
+# -------------------------
+# 🌐 Navegadores: Google Chrome + Brave
+# -------------------------
+
+# Google Chrome
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /etc/apt/keyrings/google-chrome.gpg
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | \
+  sudo tee /etc/apt/sources.list.d/google-chrome.list
+sudo apt update
+sudo apt install -y google-chrome-stable
+
+# Brave
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg \
+  https://brave.com/static-assets/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] \
+  https://brave-browser-apt-release.s3.brave.com/ stable main" | \
+  sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install -y brave-browser
+
+
 echo "✅ Instalación completada. Reinicia para aplicar algunos cambios como Docker y Zsh."
+
